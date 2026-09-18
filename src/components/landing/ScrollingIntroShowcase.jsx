@@ -278,7 +278,8 @@ export default function ScrollingIntroShowcase({
   onOpenFamilyMessage
 }) {
   const [currentIdx, setCurrentIdx] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false); // Paused by default so intro images/slides do not keep changing automatically
+  const [isHovered, setIsHovered] = useState(false);
   const [progress, setProgress] = useState(0);
   const [chimeEnabled, setChimeEnabled] = useState(false);
   const [voiceEnabled, setVoiceEnabled] = useState(false);
@@ -388,7 +389,8 @@ export default function ScrollingIntroShowcase({
       }, 350);
     }
 
-    if (!isPlaying) return;
+    // Only auto-advance if user explicitly started playback, is in reel mode, and is not hovering over the card
+    if (!isPlaying || activeViewMode !== 'reel' || isHovered) return;
 
     const chapterDurationMs = (chapter.duration || 9) * 1000;
     const intervalMs = 100;
@@ -410,7 +412,7 @@ export default function ScrollingIntroShowcase({
       if (timerVoice) clearTimeout(timerVoice);
       speechService.stop();
     };
-  }, [currentIdx, isPlaying, voiceEnabled, chimeEnabled, language]);
+  }, [currentIdx, isPlaying, activeViewMode, isHovered, voiceEnabled, chimeEnabled, language]);
 
   const handleActionClick = () => {
     if (chapter.targetRole === 'elder' && onLaunchElderMode) onLaunchElderMode();
@@ -553,6 +555,8 @@ export default function ScrollingIntroShowcase({
       <div className="scroll-reveal-outer-wrap">
         <div
           className="scroll-reveal-viewport-card"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
           style={{
             width: `${widthPercent}%`,
             borderRadius: `${cardBorderRadius}px`,
@@ -603,25 +607,35 @@ export default function ScrollingIntroShowcase({
           }}>
             {/* Left: Live indicator & timecode */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <span style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.35rem',
-                color: '#ef4444',
-                fontWeight: 800,
-                fontSize: '0.76rem',
-                letterSpacing: '0.06em'
-              }}>
+              <button
+                onClick={() => setIsPlaying(!isPlaying)}
+                style={{
+                  background: isPlaying ? 'rgba(239, 68, 68, 0.15)' : 'rgba(190, 242, 38, 0.15)',
+                  border: isPlaying ? '1px solid rgba(239, 68, 68, 0.4)' : '1px solid rgba(190, 242, 38, 0.4)',
+                  color: isPlaying ? '#ef4444' : '#bef226',
+                  borderRadius: '9999px',
+                  padding: '3px 10px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  fontWeight: 800,
+                  fontSize: '0.76rem',
+                  letterSpacing: '0.05em',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s'
+                }}
+                title={isPlaying ? 'Click to Pause' : 'Click to Play'}
+              >
                 <span style={{
                   width: '8px',
                   height: '8px',
                   borderRadius: '50%',
-                  background: '#ef4444',
-                  boxShadow: '0 0 8px #ef4444',
-                  animation: 'pulseGlow 1s infinite'
+                  background: isPlaying ? '#ef4444' : '#bef226',
+                  boxShadow: isPlaying ? '0 0 8px #ef4444' : '0 0 8px #bef226',
+                  animation: isPlaying ? 'pulseGlow 1s infinite' : 'none'
                 }} />
-                LIVE REEL
-              </span>
+                {isPlaying ? '● PLAYING REEL' : (activeViewMode === 'sprout' ? '🌱 BIOPHILIC CANVAS' : '▶ PAUSED (PLAY)')}
+              </button>
 
               <span style={{
                 color: '#cbd5e1',

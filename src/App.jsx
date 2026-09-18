@@ -54,8 +54,8 @@ const PROFILE_STORAGE_KEY = 'manasmitra_registered_profile';
 const REGISTERED_FLAG_KEY = 'manasmitra_has_registered';
 
 export default function App() {
-  // Splash Screen State (default false so the main platform loads instantly without waiting)
-  const [showSplash, setShowSplash] = useState(false);
+  // Splash Screen State (First the cinematic logo animation plays, then automatically reveals the main platform)
+  const [showSplash, setShowSplash] = useState(true);
 
   // Onboarding Registration State - Defaults to true so Render visitors immediately see the full main application
   const [isRegistered, setIsRegistered] = useState(() => {
