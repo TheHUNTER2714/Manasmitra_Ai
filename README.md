@@ -134,4 +134,5 @@ Direct, senior-accessible messaging channel bridging elders with their family ca
 
 ## 📄 License
 Non-invasive digital cognitive therapeutic companion platform developed for the North-Eastern Region Senior Health Initiative.
+link - https://manasmitra-ai.onrender.com
 
