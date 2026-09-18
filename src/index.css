@@ -1,0 +1,860 @@
+/* ==========================================================================
+   ManasMitra AI - Design System & Modern Accessible Tokens
+   Specially engineered for Elderly Dementia & Cognitive Care (MDoNER PS 26003)
+   ========================================================================== */
+
+:root {
+  /* Brand Palette: Biophilic soothing herbal & Assam tea greens, earthy warm creams */
+  --primary: #1b4332;
+  --primary-hover: #143628;
+  --primary-light: #2d6a4f;
+  --primary-subtle: #e8f5e9;
+  --primary-border: #a3d9a5;
+  --primary-glow: rgba(45, 106, 79, 0.2);
+
+  /* Accents & Regional Hues */
+  --accent-amber: #b45309;
+  --accent-amber-hover: #92400e;
+  --accent-amber-subtle: #fef3c7;
+  --accent-terracotta: #c2410c;
+  --accent-sky: #0369a1;
+  --accent-sky-subtle: #e0f2fe;
+  --accent-rose: #f43f5e;
+  --accent-coral: #e11d48;
+  --bg-obsidian: #0b132b;
+  --bg-navy: #111d38;
+
+  /* Feedback & Health States */
+  --success: #15803d;
+  --success-bg: #dcfce7;
+  --warning: #b45309;
+  --warning-bg: #fef3c7;
+  --danger: #e11d48;
+  --danger-bg: #fff1f2;
+
+  /* Canvas & Surfaces */
+  --bg-app: #fbfaf6;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #ffffff;
+  --bg-surface-sunken: #f1f3ee;
+  --bg-glass: rgba(255, 255, 255, 0.85);
+
+  /* High Legibility Typography (WCAG AAA compliant) */
+  --text-primary: #131d17;
+  --text-secondary: #33443b;
+  --text-muted: #576b61;
+  --text-inverse: #ffffff;
+
+  /* Borders & Shadows */
+  --border-subtle: #e1e7e2;
+  --border-strong: #94a39b;
+  --border-focus: #1b4332;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 2px 5px rgba(19, 29, 23, 0.04);
+  --shadow-md: 0 4px 14px rgba(19, 29, 23, 0.07);
+  --shadow-lg: 0 10px 30px rgba(19, 29, 23, 0.1);
+  --shadow-hover: 0 12px 32px rgba(27, 67, 50, 0.14);
+
+  /* Futuristic AI Healthcare & Culturally Inclusive Typography System */
+  --font-display: 'Sora', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-title: 'Sora', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Noto Sans Devanagari', system-ui, sans-serif;
+  --font-mono-num: 'Space Grotesk', -apple-system, BlinkMacSystemFont, monospace, sans-serif;
+  --font-hindi: 'Noto Sans Devanagari', 'Plus Jakarta Sans', sans-serif;
+
+  --text-base: 1.125rem; /* 18px baseline for elderly accessibility */
+  --touch-target-min: 56px;
+}
+
+/* Extra Large Text Mode for Low Vision / Tremor-friendly targets */
+body.font-xl {
+  --text-base: 1.35rem;
+  --touch-target-min: 68px;
+}
+
+/* High Contrast Mode for Cognitive Clarity */
+body.high-contrast {
+  --bg-app: #ffffff;
+  --bg-surface: #ffffff;
+  --text-primary: #000000;
+  --text-secondary: #1a1a1a;
+  --border-subtle: #000000;
+  --border-strong: #000000;
+  --primary: #0a3d24;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+}
+
+/* Base Reset & Layout */
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg-app);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+/* Button & Accessible Clickable Standards */
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:active {
+  transform: scale(0.975);
+}
+
+button:focus-visible, a:focus-visible {
+  outline: 3px solid var(--accent-amber);
+  outline-offset: 3px;
+}
+
+/* App Shell Container */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 4rem;
+  position: relative;
+  z-index: 5;
+}
+
+/* Glassmorphism Navigation Bar */
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+}
+
+.top-nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.brand-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px var(--primary-glow);
+}
+
+.brand-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-main {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.brand-badge {
+  font-size: 0.72rem;
+  background: var(--primary-subtle);
+  color: var(--primary);
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+}
+
+.brand-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Top Role Switcher Pills */
+.role-switcher {
+  display: flex;
+  align-items: center;
+  background: var(--bg-surface-sunken);
+  border: 1px solid var(--border-subtle);
+  padding: 3px;
+  border-radius: var(--radius-full);
+  gap: 3px;
+}
+
+.role-btn {
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.role-btn.active {
+  background: var(--primary);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Accessibility Control Bar */
+.accessibility-bar {
+  background: #f4f6f2;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.4rem 1.25rem;
+  font-size: 0.85rem;
+}
+
+.accessibility-bar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.accessibility-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.acc-pill-btn {
+  background: white;
+  border: 1px solid var(--border-subtle);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.acc-pill-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.acc-pill-btn.active {
+  background: var(--primary-subtle);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Interactive Top Judge Demo Bar */
+.judge-demo-banner {
+  background: linear-gradient(90deg, #1e293b, #0f172a);
+  color: #f8fafc;
+  padding: 0.55rem 1.25rem;
+  font-size: 0.85rem;
+  border-bottom: 2px solid #f59e0b;
+}
+
+.judge-demo-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.judge-badge {
+  background: #f59e0b;
+  color: #0f172a;
+  font-weight: 800;
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.judge-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.network-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.network-pill.online {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+  border-color: #22c55e;
+}
+
+.network-pill.offline {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border-color: #ef4444;
+}
+
+.sync-count-badge {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  color: #cbd5e1;
+}
+
+.demo-story-btn {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #0f172a;
+  font-weight: 800;
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.demo-story-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+
+/* Modals & Overlays */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(19, 29, 23, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  max-width: 580px;
+  width: 100%;
+  padding: 2rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Pulsing voice waveform */
+@keyframes pulseGlow {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(45, 106, 79, 0.4); }
+  70% { transform: scale(1.06); box-shadow: 0 0 0 22px rgba(45, 106, 79, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(45, 106, 79, 0); }
+}
+
+.voice-pulse-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem auto;
+  animation: pulseGlow 2s infinite;
+  box-shadow: 0 8px 24px var(--primary-glow);
+}
+
+/* Utility cards */
+.card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .top-nav-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .role-switcher {
+    justify-content: center;
+  }
+  .judge-demo-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ==========================================================================
+   ANIMATED TYPOGRAPHY SUITE - Modern AI Healthcare & Biophilic Aesthetic
+   ========================================================================== */
+
+/* 1. Prismatic Brand Shimmer (Continuous iridescent gradient flow) */
+@keyframes textGradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.font-shimmer-brand {
+  background: linear-gradient(120deg, #e11d48 0%, #f43f5e 25%, #0284c7 50%, #10b981 75%, #e11d48 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textGradientFlow 6s ease infinite;
+  display: inline-block;
+  will-change: background-position;
+}
+
+.font-shimmer-emerald {
+  background: linear-gradient(120deg, #1b4332 0%, #10b981 30%, #34d399 50%, #2d6a4f 75%, #1b4332 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textGradientFlow 7s ease infinite;
+  display: inline-block;
+  will-change: background-position;
+}
+
+.font-shimmer-cyan {
+  background: linear-gradient(120deg, #0284c7 0%, #38bdf8 30%, #818cf8 55%, #0369a1 80%, #0284c7 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textGradientFlow 6.5s ease infinite;
+  display: inline-block;
+  will-change: background-position;
+}
+
+.font-shimmer-amber {
+  background: linear-gradient(120deg, #b45309 0%, #f59e0b 30%, #fbbf24 55%, #d97706 80%, #b45309 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textGradientFlow 6s ease infinite;
+  display: inline-block;
+  will-change: background-position;
+}
+
+/* 2. Kinetic Entrance Reveal (Tracking expansion + upward glide) */
+@keyframes kineticReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+    letter-spacing: -0.04em;
+    filter: blur(4px);
+  }
+  60% {
+    opacity: 0.9;
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    letter-spacing: -0.025em;
+    filter: blur(0);
+  }
+}
+
+.kinetic-title {
+  animation: kineticReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  font-family: var(--font-display);
+}
+
+/* 3. Pulsing Clinical Numbers & Precision Telemetry */
+@keyframes numberPulseGlow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 0 0 22px rgba(16, 185, 129, 0.5), 0 0 32px rgba(2, 132, 199, 0.3);
+    transform: scale(1.02);
+  }
+}
+
+.stat-number-animated {
+  font-family: var(--font-mono-num);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  display: inline-block;
+  letter-spacing: -0.02em;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, text-shadow;
+}
+
+.stat-number-animated.glow-pulse {
+  animation: numberPulseGlow 3.2s infinite ease-in-out;
+}
+
+.stat-number-animated:hover {
+  transform: translateY(-2px) scale(1.04);
+  text-shadow: 0 4px 20px rgba(225, 29, 72, 0.35);
+}
+
+/* 4. Regional Script Wave Shimmer (Gentle iridescent glow for Hindi/Assamese) */
+@keyframes waveTextShimmer {
+  0%, 100% {
+    color: var(--text-secondary);
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  50% {
+    color: var(--primary);
+    text-shadow: 0 1px 8px rgba(45, 106, 79, 0.25);
+  }
+}
+
+.regional-wave-text {
+  font-family: var(--font-hindi);
+  animation: waveTextShimmer 4.5s infinite ease-in-out;
+  display: inline-block;
+}
+
+/* 5. Interactive Kinetic Hover Typography */
+.interactive-text-expand {
+  display: inline-block;
+  transition: letter-spacing 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s ease, color 0.3s ease;
+}
+
+.interactive-text-expand:hover {
+  letter-spacing: 0.035em;
+  transform: translateY(-1px);
+}
+
+/* 6. Living Animated Badge Text */
+.badge-animated-text {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+}
+
+.badge-animated-text::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-20deg);
+  animation: badgeSweep 3.5s infinite ease-in-out;
+}
+
+@keyframes badgeSweep {
+  0% { left: -100%; }
+  35%, 100% { left: 150%; }
+}
+
+/* 7. Reduced Motion and High Contrast Accessibility Overrides */
+@media (prefers-reduced-motion: reduce) {
+  .font-shimmer-brand,
+  .font-shimmer-emerald,
+  .font-shimmer-cyan,
+  .font-shimmer-amber {
+    animation: none !important;
+    background-size: 100% !important;
+  }
+  .kinetic-title {
+    animation: none !important;
+  }
+  .stat-number-animated.glow-pulse {
+    animation: none !important;
+    text-shadow: none !important;
+  }
+  .regional-wave-text {
+    animation: none !important;
+  }
+  .badge-animated-text::after {
+    display: none !important;
+  }
+}
+
+body.high-contrast .font-shimmer-brand,
+body.high-contrast .font-shimmer-emerald,
+body.high-contrast .font-shimmer-cyan,
+body.high-contrast .font-shimmer-amber {
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+  color: #000000 !important;
+  text-shadow: none !important;
+}
+
+body.high-contrast .stat-number-animated {
+  text-shadow: none !important;
+  color: #000000 !important;
+}
+
+/* ==========================================================================
+   Site-Wide Transitions & Cinematic Motion System
+   ========================================================================== */
+
+/* 1. Buttery Portal Route Enter Transition */
+.portal-page-enter {
+  animation: portalPageFadeSlide 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity, transform;
+}
+
+@keyframes portalPageFadeSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.995);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 2. Micro-Interactions: Card Lift & Glow on Hover */
+.vitai-journey-section .journey-card,
+.ner-challenge-card,
+.card-traditional-report,
+.card-vitai-interpretation,
+.game-card,
+.fluid-booking-card,
+.specialist-booking-roster-card,
+.medical-conclusion-card {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.28s ease;
+}
+
+.vitai-journey-section .journey-card:hover,
+.ner-challenge-card:hover,
+.specialist-booking-roster-card:hover,
+.medical-conclusion-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(5, 46, 38, 0.12), 0 0 0 1px rgba(16, 185, 129, 0.2);
+}
+
+/* 3. Global Pulse and Breathing Keyframes */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.72;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* 4. Custom Sleek Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(27, 67, 50, 0.25);
+  border-radius: 9999px;
+  transition: background 0.2s;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(27, 67, 50, 0.5);
+}
+
+/* 5. Accessible Focus & Selection */
+::selection {
+  background: rgba(190, 242, 38, 0.4);
+  color: #052e26;
+}
+
+/* ==========================================================================
+   6. 21st.dev Style Scroll Reveal Image Hero Component
+   Scroll-driven media expansion: width expands, border-radius morphs, scale zooms
+   ========================================================================== */
+.scroll-reveal-outer-wrap {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  will-change: width, transform;
+}
+
+.scroll-reveal-viewport-card {
+  position: relative;
+  overflow: hidden;
+  background: #02120c;
+  transition: width 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              border-radius 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s ease;
+  will-change: width, border-radius, transform, box-shadow;
+}
+
+.scroll-reveal-img-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+  will-change: transform;
+}
+
+.scroll-reveal-vignette-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(2, 18, 12, 0.72) 0%,
+    rgba(2, 18, 12, 0.45) 40%,
+    rgba(2, 18, 12, 0.90) 100%
+  );
+  backdrop-filter: blur(1px);
+  pointer-events: none;
+}
+
+.scroll-reveal-indicator-pill {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: rgba(3, 18, 13, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(190, 242, 38, 0.45);
+  color: #bef226;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 0.35rem 1.1rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  animation: floatGentle 2.2s ease-in-out infinite;
+}
+
+@keyframes sproutBreathe {
+  0%, 100% {
+    filter: drop-shadow(0 0 15px rgba(190, 242, 38, 0.3));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 35px rgba(190, 242, 38, 0.65));
+    transform: scale(1.02);
+  }
+}
+
+
+
