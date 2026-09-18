@@ -286,7 +286,7 @@ export default function ScrollingIntroShowcase({
   const [slideDir, setSlideDir] = useState('next');
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isManuallyExpanded, setIsManuallyExpanded] = useState(false);
-  const [activeViewMode, setActiveViewMode] = useState('reel'); // 'reel' or 'sprout'
+  const [activeViewMode, setActiveViewMode] = useState('sprout'); // Default to 21st.dev biophilic sprout scroll reveal animation
 
   const audioCtxRef = useRef(null);
   const reelScrollRef = useRef(null);

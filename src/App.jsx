@@ -7,7 +7,7 @@ import './styles/dashboard.css';
 // Data & Profiles
 import { INITIAL_ELDER_PROFILE } from './data/mockElderData';
 import { CULTURAL_PACKS } from './data/culturalPacks';
-import { SUPPORTED_LANGUAGES, t, getLocalizedText } from './data/translations';
+import { SUPPORTED_LANGUAGES, t } from './data/translations';
 
 // Common Components
 import LogoSplash from './components/common/LogoSplash';
@@ -48,21 +48,22 @@ import CaregiverDashboard from './components/caregiver/CaregiverDashboard';
 import HealthcarePortal from './components/healthcare/HealthcarePortal';
 
 import { offlineSyncEngine } from './services/offlineSyncEngine';
-import { Wifi, WifiOff, MoreVertical, Settings, Play, Stethoscope, MessageSquare, Globe, ChevronRight } from 'lucide-react';
+import { Wifi, WifiOff, MoreVertical, Settings, Play, Stethoscope, MessageSquare, Globe, ChevronRight, Sparkles } from 'lucide-react';
 
 const PROFILE_STORAGE_KEY = 'manasmitra_registered_profile';
 const REGISTERED_FLAG_KEY = 'manasmitra_has_registered';
 
 export default function App() {
-  // Splash Screen State
-  const [showSplash, setShowSplash] = useState(true);
+  // Splash Screen State (default false so the main platform loads instantly without waiting)
+  const [showSplash, setShowSplash] = useState(false);
 
-  // Onboarding Registration State
+  // Onboarding Registration State - Defaults to true so Render visitors immediately see the full main application
   const [isRegistered, setIsRegistered] = useState(() => {
     try {
-      return Boolean(localStorage.getItem(REGISTERED_FLAG_KEY));
+      const saved = localStorage.getItem(REGISTERED_FLAG_KEY);
+      return saved !== null ? saved === 'true' : true;
     } catch {
-      return false;
+      return true;
     }
   });
 
@@ -485,6 +486,40 @@ export default function App() {
                           </div>
                         </div>
                         <ChevronRight size={14} color="#047857" />
+                      </button>
+
+                      {/* Item 3b: Replay Animated Logo Splash Intro */}
+                      <button
+                        onClick={() => {
+                          setShowSplash(true);
+                          setIsMoreMenuOpen(false);
+                        }}
+                        style={{
+                          background: '#f8fafc',
+                          border: '1px solid #e2e8f0',
+                          borderRadius: '12px',
+                          padding: '0.55rem 0.8rem',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          cursor: 'pointer',
+                          width: '100%',
+                          textAlign: 'left'
+                        }}
+                        title="Replay cinematic 3D intro logo animation"
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                          <Sparkles size={16} color="#8b5cf6" />
+                          <div>
+                            <div style={{ fontWeight: 800, fontSize: '0.86rem', color: '#0f172a' }}>
+                              {language === 'hi' ? 'एनिमेटेड लोगो देखें (Logo Intro)' : 'Replay Logo Intro'}
+                            </div>
+                            <div style={{ fontSize: '0.7rem', color: '#64748b' }}>
+                              3D न्यूरल माइंड-हार्ट सिम्फनी
+                            </div>
+                          </div>
+                        </div>
+                        <ChevronRight size={14} color="#94a3b8" />
                       </button>
 
                       {/* Item 4: AI Sahayak (AI Help) */}

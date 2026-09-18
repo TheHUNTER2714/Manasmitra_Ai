@@ -182,18 +182,66 @@ export default function OnboardingRegister({ onCompleteRegistration, language = 
             >
               <Zap size={16} color="#fde047" /> त्वरित डेमो डेटा भरें (Quick Fill)
             </button>
+            <button
+              type="button"
+              onClick={() => onCompleteRegistration(formData)}
+              style={{
+                width: '100%',
+                marginTop: '0.75rem',
+                background: 'linear-gradient(135deg, #bef226 0%, #a3e635 100%)',
+                color: '#052e26',
+                border: 'none',
+                padding: '0.85rem',
+                borderRadius: '14px',
+                fontSize: '0.92rem',
+                fontWeight: 800,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.45rem',
+                boxShadow: '0 4px 16px rgba(190, 242, 38, 0.35)',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              <span>🚀 सीधे मुख्य मंच पर जाएं (Enter Main Platform)</span>
+              <ArrowRight size={16} />
+            </button>
           </div>
         </div>
 
         {/* Right Side: Registration & SOS Contact Form */}
         <div style={{ padding: '2.5rem', overflowY: 'auto', maxHeight: '85vh' }}>
-          <div style={{ marginBottom: '1.5rem' }}>
-            <h3 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#0f172a' }}>
-              पंजीकरण विवरण (Registration Setup)
-            </h3>
-            <p style={{ color: '#64748b', fontSize: '0.92rem', marginTop: '0.2rem' }}>
-              कृपया बुजुर्ग एवं परिवार के आपातकालीन संपर्क का विवरण दर्ज करें:
-            </p>
+          <div style={{ marginBottom: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.75rem' }}>
+            <div>
+              <h3 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#0f172a' }}>
+                पंजीकरण विवरण (Registration Setup)
+              </h3>
+              <p style={{ color: '#64748b', fontSize: '0.92rem', marginTop: '0.2rem' }}>
+                कृपया बुजुर्ग एवं परिवार के आपातकालीन संपर्क का विवरण दर्ज करें:
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => onCompleteRegistration(formData)}
+              style={{
+                background: '#f1f5f9',
+                border: '1px solid #cbd5e1',
+                borderRadius: '10px',
+                padding: '0.45rem 0.85rem',
+                fontSize: '0.82rem',
+                fontWeight: 700,
+                color: '#334155',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.35rem'
+              }}
+              title="सीधे बिना पंजीकरण के मुख्य मंच देखें"
+            >
+              <span>सीधे मंच खोलें (Skip)</span>
+              <ArrowRight size={13} />
+            </button>
           </div>
 
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
