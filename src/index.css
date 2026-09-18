@@ -856,5 +856,22 @@ body.high-contrast .stat-number-animated {
   }
 }
 
+/* Biophilic Intro Portal Cards & Interactive Website Details */
+.portal-showcase-card {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease, box-shadow 0.28s ease;
+}
 
+.portal-showcase-card:hover {
+  transform: translateY(-5px);
+  border-color: #bef226 !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 28px rgba(190, 242, 38, 0.22) !important;
+}
 
+.portal-card-btn {
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portal-card-btn:hover {
+  transform: scale(1.02);
+  filter: brightness(1.12);
+}

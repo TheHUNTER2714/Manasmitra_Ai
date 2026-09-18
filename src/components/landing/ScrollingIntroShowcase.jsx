@@ -26,7 +26,8 @@ import {
   Droplet,
   Maximize2,
   Minimize2,
-  Sprout
+  Sprout,
+  ArrowRight
 } from 'lucide-react';
 import { speechService } from '../../services/speechService';
 import AiSahayakLogo from '../common/AiSahayakLogo';
@@ -266,6 +267,249 @@ const SECTION_LOCALES = {
   }
 };
 
+const WEBSITE_DETAILS = {
+  en: {
+    badge: '🌿 MANASMITRA AI • NORTH EAST COGNITIVE MISSION (MDoNER)',
+    title: 'Culturally Rooted Digital Therapeutic Ecosystem for Dementia & Elder Longevity',
+    subtitle: 'Connecting elders, family caregivers, and clinical neurologists across all 8 Northeastern states with 100% offline resilience and native dialects.',
+    explorePortalsHeader: 'EXPLORE THE 3 CONNECTED MODULES OF MANASMITRA',
+    portals: [
+      {
+        id: 'elder',
+        tag: 'COGNITIVE THERAPY',
+        tagColor: '#bef226',
+        icon: '👴',
+        title: 'Elder Neuro-Care & Memory Hub',
+        desc: 'Therapeutic brain exercises & culturally localized stimulation designed for seniors.',
+        features: [
+          '7+ NE Neuro-Games: Assam Jaapi Memory, Birdsound Match, Daily Timeline & Crosswords',
+          '24x7 Mitra Sahayak Multilingual Voice AI Companion (Speaks Native Dialects)',
+          'Gentle Routine Orientation: Sunrise/Sunset visual cues & soothing voice prompts'
+        ],
+        actionLabel: 'Launch Elder Portal',
+        actionType: 'elder'
+      },
+      {
+        id: 'caregiver',
+        tag: 'FAMILY NETWORK',
+        tagColor: '#38bdf8',
+        icon: '👨‍👩‍👧',
+        title: 'Caregiver & Family Telemetry',
+        desc: 'Real-time cognitive trajectory tracking, emergency distress alerts & family coordination.',
+        features: [
+          'Live Cognitive Trajectory, Sleep Trends & Daily Wellness Score graphs',
+          'Automated Family SOS Missed Call System (Operates with Zero Internet)',
+          'Medication Schedules, Wander-Risk Geofence & Emergency Broadcasts'
+        ],
+        actionLabel: 'Open Caregiver Portal',
+        actionType: 'caregiver'
+      },
+      {
+        id: 'clinical',
+        tag: 'SPECIALIST CARE',
+        tagColor: '#a7f3d0',
+        icon: '👩‍⚕️',
+        title: 'Clinical & Neurologist Network',
+        desc: 'Clinical cognitive screening, diagnostic biomarker decoder & verified specialist tele-consults.',
+        features: [
+          'AI-Powered MMSE / MoCA Cognitive Screening & Brain MRI/CT scan visualizer',
+          'Smart Prescription OCR Scanner with regional drug-safety checks',
+          'Direct Tele-Consults with Verified Medindia Neurologists across NER'
+        ],
+        actionLabel: 'Consult Specialists',
+        actionType: 'healthcare'
+      }
+    ],
+    techHighlights: [
+      { icon: '🌿', label: '8 NER States', sub: 'Assam to Sikkim' },
+      { icon: '🌐', label: '11 Native Dialects', sub: 'Voice & text AI support' },
+      { icon: '⚡', label: '100% Offline-First', sub: 'IndexedDB edge sync in hills' },
+      { icon: '🚨', label: 'Automated SOS Call', sub: 'Instant family broadcast' },
+      { icon: '🛡️', label: 'DPDP & ABDM Safe', sub: 'Encrypted privacy-first care' }
+    ]
+  },
+  hi: {
+    badge: '🌿 मानसमित्र एआई • उत्तर-पूर्व संज्ञानात्मक स्वास्थ्य मिशन (MDoNER)',
+    title: 'डिमेंशिया व बुजुर्गों की स्मृति रक्षा हेतु सांस्कृतिक डिजिटल थैराप्यूटिक मंच',
+    subtitle: '८ उत्तर-पूर्वी राज्यों के बुजुर्गों, परिवार के देखभालकर्ताओं और न्यूरोलॉजिस्ट विशेषज्ञों को १००% ऑफलाइन सहायता और क्षेत्रीय भाषाओं से जोड़ना।',
+    explorePortalsHeader: 'मानसमित्र के ३ मुख्य इंटरैक्टिव पोर्टल्स देखें',
+    portals: [
+      {
+        id: 'elder',
+        tag: 'संज्ञानात्मक थैरेपी',
+        tagColor: '#bef226',
+        icon: '👴',
+        title: 'बुजुर्ग न्यूरो-केयर एवं मेमोरी हब',
+        desc: 'बुजुर्गों के लिए सांस्कृतिक रूप से अनुकूलित मस्तिष्क व्यायाम व सुखद अनुभव।',
+        features: [
+          '७+ सांस्कृतिक खेल: असम जापी मेमोरी, पक्षी ध्वनि पहचान, दैनिक टाइमलाइन व शब्द पहेली',
+          '२४x७ मित्र सहायक बहुभाषी वॉयस एआई साथी (स्थानीय बोलियों में बात करे)',
+          'सौम्य दैनिक रूटीन मार्गदर्शन: सूर्योदय/सूर्यास्त संकेत व सुखद ऑडियो रिमाइंडर'
+        ],
+        actionLabel: 'बुजुर्ग पोर्टल शुरू करें',
+        actionType: 'elder'
+      },
+      {
+        id: 'caregiver',
+        tag: 'पारिवारिक नेटवर्क',
+        tagColor: '#38bdf8',
+        icon: '👨‍👩‍👧',
+        title: 'केयरगिवर एवं फैमिली टेलीमेट्री',
+        desc: 'स्मृति स्थिति का लाइव ट्रैकिंग ग्राफ, आपातकालीन अलर्ट एवं पारिवारिक समन्वय।',
+        features: [
+          'दैनिक संज्ञानात्मक स्वास्थ्य स्कोर, नींद व मनोदशा का लाइव ग्राफ',
+          'स्वचालित फैमिली एसओएस मिस्ड कॉल सिस्टम (बिना इंटरनेट के भी सक्रिय)',
+          'दवा समय सारिणी, भटकाव जोखिम एवं बहु-सदस्यीय फैमिली केयर सर्कल'
+        ],
+        actionLabel: 'केयरगिवर पोर्टल खोलें',
+        actionType: 'caregiver'
+      },
+      {
+        id: 'clinical',
+        tag: 'विशेषज्ञ चिकित्सा',
+        tagColor: '#a7f3d0',
+        icon: '👩‍⚕️',
+        title: 'क्लीनिकल एवं डॉक्टर नेटवर्क',
+        desc: 'स्क्रीनिंग परीक्षण, एमआरआई रिपोर्ट विश्लेषण एवं प्रमाणित न्यूरोलॉजिस्ट परामर्श।',
+        features: [
+          'एआई आधारित MMSE / MoCA संज्ञानात्मक स्क्रीनिंग एवं मस्तिष्क MRI रिपोर्ट इंटरप्रेटर',
+          'स्मार्ट प्रिस्क्रिप्शन ओसीआर स्कैनर व क्षेत्रीय दवा सुरक्षा जांच',
+          'गुवाहाटी, शिलांग सहित NER के सत्यापित मेडइंडिया न्यूरोलॉजिस्ट से सीधा परामर्श'
+        ],
+        actionLabel: 'विशेषज्ञ परामर्श देखें',
+        actionType: 'healthcare'
+      }
+    ],
+    techHighlights: [
+      { icon: '🌿', label: '८ पूर्वोत्तर राज्य', sub: 'असम, मेघालय, मणिपुर आदि' },
+      { icon: '🌐', label: '११ देशी भाषाएं', sub: 'वॉयस व टेक्स्ट एआई' },
+      { icon: '⚡', label: '१००% ऑफलाइन-सक्षम', sub: 'पहाड़ी क्षेत्रों में बिना रुकावट' },
+      { icon: '🚨', label: 'ऑटोमेटेड SOS कॉल', sub: 'तत्काल पारिवारिक अलर्ट' },
+      { icon: '🛡️', label: 'ABDM व DPDP सुरक्षित', sub: 'पूर्ण डेटा गोपनीयता' }
+    ]
+  },
+  as: {
+    badge: '🌿 মানস মিত্ৰ এআই • উত্তৰ-পূব স্মৃতি আৰু মানসিক যত্ন অভিযান (MDoNER)',
+    title: 'উত্তৰ-পূবৰ জ্যেষ্ঠজনৰ ডিমেনচিয়া প্ৰতিৰোধৰ সাংস্কৃতিক ডিজিটেল চিকিৎসা মঞ্চ',
+    subtitle: 'উত্তৰ-পূবৰ ৮ খন ৰাজ্যৰ জ্যেষ্ঠ নাগৰিক, পৰিয়ালৰ যত্ন লওঁতা আৰু বিশেষজ্ঞ চিকিৎসকক ১০০% অফলাইন আৰু স্থানীয় ভাষাৰে সংযোগ কৰে।',
+    explorePortalsHeader: 'মানস মিত্ৰৰ ৩ টা প্ৰধান পৰ্টেল চাওক',
+    portals: [
+      {
+        id: 'elder',
+        tag: 'স্মৃতি সংৰক্ষণ',
+        tagColor: '#bef226',
+        icon: '👴',
+        title: 'জ্যেষ্ঠজনৰ নিউৰো-কেয়াৰ পৰ্টেল',
+        desc: 'জ্যেষ্ঠজনৰ স্মৃতি সজীৱ ৰাখিবলৈ সাংস্কৃতিক খেল আৰু মৰমীয়াল এআই সহায়িকা।',
+        features: [
+          '৭+ থলুৱা খেল: অসমীয়া জাপি মেমৰি, চৰাইৰ মাত চিনাক্তকৰণ, দৈনিক ৰুটিন আৰু শব্দ খেল',
+          '২৪x৭ মিত্ৰ সহায়ক কণ্ঠ এআই সংগী (অসমীয়া আৰু থলুৱা উপভাষাত কথা কয়)',
+          'নিয়মীয়া সময় নিৰ্ধাৰণ: সূৰ্যোদয়/সূৰ্যাস্তৰ সংকেত আৰু ঔষধি মনত পেলোৱাৰ ব্যৱস্থা'
+        ],
+        actionLabel: 'জ্যেষ্ঠ পৰ্টেল খোলক',
+        actionType: 'elder'
+      },
+      {
+        id: 'caregiver',
+        tag: 'পৰিয়ালৰ সুৰক্ষা',
+        tagColor: '#38bdf8',
+        icon: '👨‍👩‍👧',
+        title: 'কেয়াৰগিভাৰ আৰু পৰিয়াল নেটৱৰ্ক',
+        desc: 'জ্যেষ্ঠজনৰ স্মৃতিৰ অগ্ৰগতি নিৰীক্ষণ, জৰুৰীকালীন সতৰ্কবাণী আৰু পৰিয়ালৰ যত্ন।',
+        features: [
+          'দৈনিক স্মৃতি স্বাস্থ্যৰ স্ক\'ৰ, টোপনি আৰু মনোভাৱৰ লাইভ গ্ৰাফ',
+          'স্বয়ংক্ৰিয় পৰিয়াল এছঅ\'এছ মিছড কল ব্যৱস্থা (ইণ্টাৰনেট নোহোৱাকৈও কাম কৰে)',
+          'ঔষধ খোৱাৰ তালিকা, পথ হেৰোৱা প্ৰতিৰোধ আৰু জৰুৰীকালীন সতৰ্কবাণী'
+        ],
+        actionLabel: 'কেয়াৰগিভাৰ পৰ্টেল খোলক',
+        actionType: 'caregiver'
+      },
+      {
+        id: 'clinical',
+        tag: 'চিকিৎসক নেটৱৰ্ক',
+        tagColor: '#a7f3d0',
+        icon: '👩‍⚕️',
+        title: 'ক্লিনিকেল আৰু বিশেষজ্ঞ পৰ্টেল',
+        desc: 'এমএমএছই পৰীক্ষা, এমআৰআই স্কেন বিশ্লেষণ আৰু বিশেষজ্ঞ নিউৰোলজিস্টৰ পৰামৰ্শ।',
+        features: [
+          'এআই আধাৰিত MMSE / MoCA টেষ্ট আৰু মগজুৰ MRI স্কেন বিশ্লেষণ',
+          'প্ৰেচক্ৰিপচন OCR স্কেনাৰ আৰু ঔষধি সুৰক্ষা নিৰীক্ষণ',
+          'গুৱাহাটী, শ্বিলং আদিৰ অভিজ্ঞ মেডিণ্ডিয়া নিউৰোলজিস্টৰ সৈতে পৰামৰ্শ'
+        ],
+        actionLabel: 'বিশেষজ্ঞৰ পৰামৰ্শ লওক',
+        actionType: 'healthcare'
+      }
+    ],
+    techHighlights: [
+      { icon: '🌿', label: '৮ খন উত্তৰ-পূব ৰাজ্য', sub: 'অসমৰ পৰা চিকিমলৈ' },
+      { icon: '🌐', label: '১১ টা থলুৱা ভাষা', sub: 'কণ্ঠ আৰু পাঠ্য এআই' },
+      { icon: '⚡', label: '১০০% অফলাইন সুবিধা', sub: 'দুৰ্গম পাহাৰতো চলিব' },
+      { icon: '🚨', label: 'স্বয়ংক্ৰিয় এছঅ\'এছ কল', sub: 'তাৎক্ষণিক পৰিয়ালৰ সতৰ্কবাণী' },
+      { icon: '🛡️', label: 'সম্পূৰ্ণ গোপনীয়তা', sub: 'DPDP আৰু ABDM সুৰক্ষিত' }
+    ]
+  },
+  bn: {
+    badge: '🌿 মানসমিত্র এআই • উত্তর-পূর্ব মেমোরি কেয়ার মিশন (MDoNER)',
+    title: 'প্রবীণদের ডিমেনশিয়া প্রতিরোধ ও স্মৃতি সুরক্ষায় সাংস্কৃতিক ডিজিটাল থেরাপিউটিক মঞ্চ',
+    subtitle: 'উত্তর-পূর্ব ভারতের ৮টি রাজ্যের প্রবীণ, পরিবারের সেবাদানকারী ও বিশেষজ্ঞ ডাক্তারদের ১০০% অফলাইন ও স্থানীয় ভাষায় সংযুক্ত করে।',
+    explorePortalsHeader: 'মানসমিত্র প্ল্যাটফর্মের ৩টি মূল পোর্টাল দেখুন',
+    portals: [
+      {
+        id: 'elder',
+        tag: 'জ্ঞানীয় যত্ন',
+        tagColor: '#bef226',
+        icon: '👴',
+        title: 'প্রবীণ নিউরো-কেয়ার ও মেমোরি হাব',
+        desc: 'প্রবীণদের স্মৃতি পুনরুজ্জীবিত করতে সাংস্কৃতিক খেলাধুলা ও সহানুভূতিশীল ভয়েস এআই।',
+        features: [
+          '৭+ স্থানীয় খেলা: আসাম জাপি মেমরি, পাখির ডাক মেলানো, রুটিন টাইমলাইন ও শব্দ ধাঁধা',
+          '২৪x৭ মিত্র সহায়ক বহুভাষিক ভয়েস এআই সঙ্গী (স্থানীয় ভাষায় কথা বলে)',
+          'দৈনন্দিন রুটিন পরিচালনা: সূর্যোদয়/সূর্যাস্ত সংকেত ও নরম অডিও রিমাইন্ডার'
+        ],
+        actionLabel: 'প্রবীণ পোর্টাল খুলুন',
+        actionType: 'elder'
+      },
+      {
+        id: 'caregiver',
+        tag: 'পারিবারিক নেটওয়ার্ক',
+        tagColor: '#38bdf8',
+        icon: '👨‍👩‍👧',
+        title: 'কেয়ারগিভার ও ফ্যামিলি টেলিমেট্রি',
+        desc: 'স্মৃতি স্বাস্থ্যের অগ্রগতি ট্র্যাকিং, জরুরি এসওএস সতর্কতা ও পারিবারিক যত্ন সমন্বয়।',
+        features: [
+          'দৈনিক জ্ঞানীয় স্বাস্থ্য স্কোর, ঘুম ও মেজাজের লাইভ ট্র্যাকিং গ্রাফ',
+          'স্বয়ংক্রিয় ফ্যামিলি এসওএস মিসড কল সিস্টেম (ইন্টারনেট ছাড়াও কাজ করে)',
+          'ওষুধের সময়সূচী, পথ হারানো প্রতিরোধ ও পরিবারের সকলের যৌথ সমন্বয়'
+        ],
+        actionLabel: 'কেয়ারগিভার পোর্টাল খুলুন',
+        actionType: 'caregiver'
+      },
+      {
+        id: 'clinical',
+        tag: 'চিকিৎসক নেটওয়ার্ক',
+        tagColor: '#a7f3d0',
+        icon: '👩‍⚕️',
+        title: 'ক্লিনিক্যাল ও বিশেষজ্ঞ ডাক্তার পোর্টাল',
+        desc: 'ক্লিনিক্যাল স্ক্রিনিং, এমআরআই রিপোর্ট ইন্টারপ্রিটেশন ও বিশেষজ্ঞ নিউরোলজিস্ট পরামর্শ।',
+        features: [
+          'এআই চালিত MMSE / MoCA স্ক্রিনিং ও মস্তিষ্কের MRI স্ক্যান ইন্টারপ্রিটার',
+          'স্মার্ট প্রেসক্রিপশন ওসিআর স্ক্যানার ও ওষুধের সুরক্ষা যাচাই',
+          'গুয়াহাটি, শিলং সহ সমগ্র উত্তর-পূর্বের মেডইন্ডিয়া নিউরোলজিস্টদের সাথে পরামর্শ'
+        ],
+        actionLabel: 'বিশেষজ্ঞদের সাথে যোগাযোগ',
+        actionType: 'healthcare'
+      }
+    ],
+    techHighlights: [
+      { icon: '🌿', label: '৮টি উত্তর-পূর্ব রাজ্য', sub: 'আসাম থেকে সিকিম' },
+      { icon: '🌐', label: '১১টি আঞ্চলিক ভাষা', sub: 'ভয়েস ও টেক্সট এআই' },
+      { icon: '⚡', label: '১০০% অফলাইন সমর্থন', sub: 'পাহাড়েও কার্যকর' },
+      { icon: '🚨', label: 'অটোমেটেড এসওএস কল', sub: 'জরুরি মিসড কল অ্যালার্ট' },
+      { icon: '🛡️', label: 'সম্পূর্ণ গোপনীয়তা', sub: 'DPDP ও ABDM সুরক্ষিত' }
+    ]
+  }
+};
+
 export default function ScrollingIntroShowcase({
   language = 'hi',
   onOpenFullscreenTour,
@@ -294,6 +538,7 @@ export default function ScrollingIntroShowcase({
   const containerRef = useRef(null);
 
   const locSection = SECTION_LOCALES[language] || SECTION_LOCALES['en'];
+  const currentWebsiteDetails = WEBSITE_DETAILS[language] || WEBSITE_DETAILS['en'];
   const chapter = INTRO_CHAPTERS[currentIdx] || INTRO_CHAPTERS[0];
   const activeLoc = getChapterLocalized(chapter, language);
 
@@ -731,119 +976,268 @@ export default function ScrollingIntroShowcase({
 
           {/* Viewport Stage: Dual Mode (Sprout Awakening vs 12-Chapter Reel) */}
           {activeViewMode === 'sprout' ? (
-            /* Mode 1: Biophilic Sprout Awakening Stage */
+            /* Mode 1: Biophilic Sprout Stage with Comprehensive Website Details */
             <div style={{
               position: 'relative',
               width: '100%',
-              aspectRatio: '16/9',
-              minHeight: '380px',
-              maxHeight: '480px',
+              minHeight: '560px',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: '2rem 1.5rem',
+              padding: '2.4rem 1.25rem 2rem',
               textAlign: 'center',
-              overflow: 'hidden'
+              boxSizing: 'border-box'
             }}>
               {/* Sprout Breathing Glow Aura */}
               <div style={{
                 position: 'absolute',
-                width: '420px',
-                height: '420px',
+                width: '500px',
+                height: '500px',
                 borderRadius: '50%',
                 background: '#bef226',
-                filter: 'blur(130px)',
-                opacity: 0.22,
+                filter: 'blur(150px)',
+                opacity: 0.16,
                 pointerEvents: 'none'
               }} />
 
-              <div style={{ position: 'relative', zIndex: 3, maxWidth: '800px', width: '100%' }}>
-                {/* Sprout Badge */}
+              <div style={{ position: 'relative', zIndex: 3, maxWidth: '1140px', width: '100%' }}>
+                {/* Platform Mission Badge */}
                 <div style={{
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.5rem',
-                  background: 'rgba(5, 46, 38, 0.85)',
+                  background: 'rgba(5, 46, 38, 0.9)',
                   border: '1.5px solid #bef226',
                   color: '#bef226',
-                  padding: '0.4rem 1.15rem',
+                  padding: '0.42rem 1.25rem',
                   borderRadius: '9999px',
                   fontSize: '0.84rem',
                   fontWeight: 800,
                   letterSpacing: '0.04em',
-                  marginBottom: '0.9rem',
-                  backdropFilter: 'blur(10px)',
+                  marginBottom: '0.85rem',
+                  backdropFilter: 'blur(12px)',
                   boxShadow: '0 0 25px rgba(190, 242, 38, 0.35)',
                   animation: 'sproutBreathe 3s ease-in-out infinite'
                 }}>
                   <Sprout size={16} />
-                  <span>{locSection.biophilicBadge}</span>
+                  <span>{currentWebsiteDetails.badge}</span>
                 </div>
 
                 {/* Main Headline */}
                 <h3 style={{
-                  fontSize: 'clamp(1.5rem, 3.2vw, 2.3rem)',
+                  fontSize: 'clamp(1.55rem, 3.2vw, 2.35rem)',
                   fontWeight: 900,
                   color: '#ffffff',
-                  lineHeight: 1.25,
-                  marginBottom: '0.7rem',
-                  textShadow: '0 2px 14px rgba(0,0,0,0.85)'
+                  lineHeight: 1.22,
+                  marginBottom: '0.65rem',
+                  textShadow: '0 3px 16px rgba(0,0,0,0.92)'
                 }}>
-                  {locSection.biophilicTitle}
+                  {currentWebsiteDetails.title}
                 </h3>
 
-                {/* Quote */}
+                {/* Platform Mission Subtitle */}
                 <p style={{
                   fontSize: '1rem',
-                  fontStyle: 'italic',
-                  color: '#bef226',
-                  margin: '0 auto 1.2rem',
-                  maxWidth: '680px',
-                  textShadow: '0 2px 8px rgba(0,0,0,0.8)',
-                  fontWeight: 600
+                  color: '#e2e8f0',
+                  margin: '0 auto 1.35rem',
+                  maxWidth: '820px',
+                  textShadow: '0 2px 10px rgba(0,0,0,0.9)',
+                  fontWeight: 500,
+                  lineHeight: 1.55
                 }}>
-                  {locSection.biophilicQuote}
+                  {currentWebsiteDetails.subtitle}
                 </p>
 
-                {/* 4 Biophilic North-East Pillars */}
+                {/* 5 Core Platform Feature Badges */}
                 <div style={{
                   display: 'flex',
                   gap: '0.55rem',
                   flexWrap: 'wrap',
                   justifyContent: 'center',
-                  marginBottom: '1.5rem'
+                  marginBottom: '1.6rem'
                 }}>
-                  {[
-                    { icon: '🌿', label: '8 NER States' },
-                    { icon: '🌐', label: '11 Native Dialects' },
-                    { icon: '🧠', label: 'Adaptive Neuro-Play' },
-                    { icon: '🛡️', label: '100% Offline Resilience' }
-                  ].map((p, i) => (
+                  {currentWebsiteDetails.techHighlights.map((h, i) => (
                     <div
                       key={i}
                       style={{
-                        background: 'rgba(0, 0, 0, 0.65)',
+                        background: 'rgba(2, 20, 14, 0.78)',
                         border: '1px solid rgba(190, 242, 38, 0.35)',
                         borderRadius: '9999px',
-                        padding: '0.35rem 0.9rem',
+                        padding: '0.38rem 0.95rem',
                         color: '#ffffff',
                         fontSize: '0.78rem',
                         fontWeight: 700,
                         display: 'inline-flex',
                         alignItems: 'center',
-                        gap: '0.35rem',
-                        backdropFilter: 'blur(8px)'
+                        gap: '0.45rem',
+                        backdropFilter: 'blur(10px)',
+                        boxShadow: '0 4px 15px rgba(0,0,0,0.4)'
                       }}
                     >
-                      <span>{p.icon}</span>
-                      <span>{p.label}</span>
+                      <span style={{ fontSize: '0.95rem' }}>{h.icon}</span>
+                      <span style={{ color: '#bef226' }}>{h.label}</span>
+                      <span style={{ opacity: 0.7, fontSize: '0.72rem', borderLeft: '1px solid rgba(255,255,255,0.2)', paddingLeft: '0.4rem' }}>{h.sub}</span>
                     </div>
                   ))}
                 </div>
 
-                {/* Action Buttons */}
-                <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                {/* Section Header: The 3 Connected Modules of the Website */}
+                <div style={{
+                  fontSize: '0.76rem',
+                  fontWeight: 900,
+                  letterSpacing: '0.12em',
+                  color: '#bef226',
+                  textTransform: 'uppercase',
+                  marginBottom: '0.95rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.6rem'
+                }}>
+                  <span style={{ height: '1px', width: '40px', background: 'linear-gradient(90deg, transparent, #bef226)' }} />
+                  <span>{currentWebsiteDetails.explorePortalsHeader}</span>
+                  <span style={{ height: '1px', width: '40px', background: 'linear-gradient(90deg, #bef226, transparent)' }} />
+                </div>
+
+                {/* 3 Interactive Portal Cards Grid */}
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                  gap: '1.1rem',
+                  marginBottom: '1.8rem',
+                  textAlign: 'left'
+                }}>
+                  {currentWebsiteDetails.portals.map((portal) => (
+                    <div
+                      key={portal.id}
+                      className="portal-showcase-card"
+                      style={{
+                        background: 'rgba(2, 22, 16, 0.84)',
+                        border: '1.5px solid rgba(190, 242, 38, 0.28)',
+                        borderRadius: '18px',
+                        padding: '1.3rem 1.2rem',
+                        backdropFilter: 'blur(14px)',
+                        boxShadow: '0 10px 32px rgba(0, 0, 0, 0.55)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                        position: 'relative',
+                        overflow: 'hidden'
+                      }}
+                    >
+                      {/* Top Accent Gradient Line */}
+                      <div style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        height: '3px',
+                        background: `linear-gradient(90deg, transparent, ${portal.tagColor}, transparent)`
+                      }} />
+
+                      <div>
+                        {/* Header: Tag + Icon */}
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
+                          <span style={{
+                            background: 'rgba(0, 0, 0, 0.5)',
+                            border: `1px solid ${portal.tagColor}55`,
+                            color: portal.tagColor,
+                            borderRadius: '9999px',
+                            padding: '0.2rem 0.65rem',
+                            fontSize: '0.72rem',
+                            fontWeight: 800,
+                            letterSpacing: '0.05em'
+                          }}>
+                            {portal.tag}
+                          </span>
+                          <span style={{ fontSize: '1.45rem' }}>{portal.icon}</span>
+                        </div>
+
+                        {/* Title */}
+                        <h4 style={{
+                          fontSize: '1.1rem',
+                          fontWeight: 800,
+                          color: '#ffffff',
+                          marginBottom: '0.4rem',
+                          lineHeight: 1.3
+                        }}>
+                          {portal.title}
+                        </h4>
+
+                        {/* Description */}
+                        <p style={{
+                          fontSize: '0.82rem',
+                          color: '#94a3b8',
+                          lineHeight: 1.48,
+                          marginBottom: '0.95rem',
+                          fontWeight: 500
+                        }}>
+                          {portal.desc}
+                        </p>
+
+                        {/* Feature Bullet Points */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', marginBottom: '1.25rem' }}>
+                          {portal.features.map((feat, fIdx) => (
+                            <div key={fIdx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.45rem' }}>
+                              <CheckCircle2 size={13} color={portal.tagColor} style={{ flexShrink: 0, marginTop: '3px' }} />
+                              <span style={{ fontSize: '0.78rem', color: '#cbd5e1', lineHeight: 1.45, fontWeight: 500 }}>
+                                {feat}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Direct 1-Click Action CTA Button */}
+                      <button
+                        onClick={() => {
+                          if (portal.actionType === 'elder') onLaunchElderMode?.();
+                          else if (portal.actionType === 'caregiver') onLaunchCaregiver?.();
+                          else if (portal.actionType === 'healthcare') onLaunchHealthcare?.();
+                        }}
+                        className="portal-card-btn"
+                        style={{
+                          width: '100%',
+                          background: portal.tagColor === '#bef226'
+                            ? '#bef226'
+                            : (portal.tagColor === '#38bdf8' ? '#0284c7' : '#059669'),
+                          color: portal.tagColor === '#bef226' ? '#052e26' : '#ffffff',
+                          border: 'none',
+                          borderRadius: '12px',
+                          padding: '0.65rem 1rem',
+                          fontSize: '0.86rem',
+                          fontWeight: 800,
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '0.45rem',
+                          boxShadow: `0 4px 18px ${portal.tagColor}44`
+                        }}
+                      >
+                        <span>{portal.actionLabel}</span>
+                        <ArrowRight size={14} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Bottom Cinema Controls & Navigation Bar */}
+                <div style={{
+                  display: 'flex',
+                  gap: '0.75rem',
+                  justifyContent: 'center',
+                  flexWrap: 'wrap',
+                  alignItems: 'center',
+                  background: 'rgba(2, 18, 13, 0.75)',
+                  border: '1px solid rgba(255, 255, 255, 0.12)',
+                  borderRadius: '9999px',
+                  padding: '0.55rem 1.25rem',
+                  backdropFilter: 'blur(10px)',
+                  maxWidth: 'fit-content',
+                  margin: '0 auto'
+                }}>
                   <button
                     onClick={() => {
                       setActiveViewMode('reel');
@@ -854,66 +1248,85 @@ export default function ScrollingIntroShowcase({
                       color: '#052e26',
                       border: 'none',
                       borderRadius: '9999px',
-                      padding: '0.7rem 1.6rem',
-                      fontSize: '0.92rem',
-                      fontWeight: 900,
-                      cursor: 'pointer',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      boxShadow: '0 4px 25px rgba(190, 242, 38, 0.45)',
-                      transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)'
-                    }}
-                  >
-                    <Film size={16} />
-                    <span>{locSection.toggleTour} →</span>
-                  </button>
-
-                  <button
-                    onClick={() => {
-                      setChimeEnabled(true);
-                      playHarmonicChime();
-                    }}
-                    style={{
-                      background: 'rgba(255, 255, 255, 0.12)',
-                      color: '#ffffff',
-                      border: '1.5px solid rgba(190, 242, 38, 0.5)',
-                      borderRadius: '9999px',
-                      padding: '0.7rem 1.35rem',
-                      fontSize: '0.88rem',
+                      padding: '0.55rem 1.3rem',
+                      fontSize: '0.86rem',
                       fontWeight: 800,
                       cursor: 'pointer',
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '0.45rem',
-                      backdropFilter: 'blur(10px)',
-                      transition: 'all 0.2s'
+                      boxShadow: '0 2px 15px rgba(190, 242, 38, 0.4)'
                     }}
                   >
-                    <Music size={15} color="#bef226" />
-                    <span>{locSection.chimeOn}</span>
+                    <Film size={15} />
+                    <span>{locSection.toggleTour} →</span>
                   </button>
 
                   <button
                     onClick={onOpenFullscreenTour}
                     style={{
-                      background: 'rgba(0, 0, 0, 0.5)',
-                      color: '#cbd5e1',
-                      border: '1px solid rgba(255, 255, 255, 0.2)',
+                      background: 'rgba(255, 255, 255, 0.12)',
+                      color: '#ffffff',
+                      border: '1px solid rgba(255, 255, 255, 0.25)',
                       borderRadius: '9999px',
-                      padding: '0.7rem 1.3rem',
-                      fontSize: '0.88rem',
+                      padding: '0.55rem 1.2rem',
+                      fontSize: '0.84rem',
                       fontWeight: 700,
                       cursor: 'pointer',
                       display: 'inline-flex',
                       alignItems: 'center',
-                      gap: '0.4rem',
-                      backdropFilter: 'blur(8px)'
+                      gap: '0.4rem'
                     }}
                   >
                     <Play size={14} />
                     <span>{locSection.openFullscreen}</span>
                   </button>
+
+                  <button
+                    onClick={() => {
+                      setChimeEnabled(!chimeEnabled);
+                      if (!chimeEnabled) playHarmonicChime();
+                    }}
+                    style={{
+                      background: chimeEnabled ? 'rgba(56, 189, 248, 0.2)' : 'rgba(255, 255, 255, 0.08)',
+                      color: chimeEnabled ? '#38bdf8' : '#cbd5e1',
+                      border: chimeEnabled ? '1px solid #38bdf8' : '1px solid rgba(255, 255, 255, 0.15)',
+                      borderRadius: '9999px',
+                      padding: '0.55rem 1.1rem',
+                      fontSize: '0.84rem',
+                      fontWeight: 700,
+                      cursor: 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.4rem'
+                    }}
+                  >
+                    <Music size={14} />
+                    <span>{chimeEnabled ? locSection.chimeOff : locSection.chimeOn}</span>
+                  </button>
+
+                  {onTriggerSos && (
+                    <button
+                      onClick={onTriggerSos}
+                      style={{
+                        background: 'rgba(239, 68, 68, 0.2)',
+                        color: '#fca5a5',
+                        border: '1px solid rgba(239, 68, 68, 0.45)',
+                        borderRadius: '9999px',
+                        padding: '0.55rem 1.1rem',
+                        fontSize: '0.84rem',
+                        fontWeight: 700,
+                        cursor: 'pointer',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.4rem'
+                      }}
+                      title="Test Automated Emergency SOS Telephony"
+                    >
+                      <PhoneCall size={13} color="#ef4444" />
+                      <span>SOS Emergency</span>
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
